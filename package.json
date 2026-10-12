@@ -1,0 +1,56 @@
+{
+  "name": "@jelias/kody-release-tracker",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Track platform releases with your own release hook and an optional daily digest for your account.",
+  "files": [
+    "src",
+    ".kody/icon.png",
+    "docs/install.md",
+    "docs/update.md",
+    "CHANGELOG.md",
+    "README.md",
+    "AGENTS.md",
+    "LICENSE",
+    "tsconfig.json"
+  ],
+  "exports": {
+    "./configure": {
+      "types": "./src/configure.ts",
+      "default": "./src/configure.ts"
+    },
+    "./check": {
+      "types": "./src/check.ts",
+      "default": "./src/check.ts"
+    },
+    "./status": {
+      "types": "./src/status.ts",
+      "default": "./src/status.ts"
+    },
+    "./check-job": {
+      "types": "./src/check-job.ts",
+      "default": "./src/check-job.ts"
+    }
+  },
+  "kody": {
+    "id": "kody-release-tracker",
+    "category": "utilities",
+    "description": "Track platform releases with your own release hook and an optional daily digest for your account.",
+    "searchText": "kody platform release tracker changelog new version onRelease hook daily check digest email triage prompt api.github.com",
+    "jobs": {
+      "kody-release-check": {
+        "entry": "./src/check-job.ts",
+        "enabled": false,
+        "schedule": {
+          "type": "cron",
+          "expression": "0 13 * * *"
+        },
+        "timezone": "UTC"
+      }
+    }
+  },
+  "dependencies": {
+    "zod": "^4.6.2"
+  }
+}
